@@ -2,7 +2,7 @@
 
 process hmmFolderScan {
 
-    cpus ${params.HMM.CPU}
+    cpus '${params.HMM.CPU}'
 
     memory '4 GB'
 
