@@ -1,6 +1,5 @@
 #!/usr/bin/env nextflow
 
-params.str = "database"
 process hmmFolderScan {
 
     """
@@ -14,12 +13,7 @@ process hmmFolderScan {
     # Pipeline Folders are created with the help of a subscript.
     sh ${params.CREATEFOLDER} ${params.HMM.OUTPUT}
 
-    # If EValue is given, it is used in qsub call.
-    if [ "${params.HMM.EVALUE}" != "" ]; then
-        EVALUE="-E ${params.HMM.EVALUE}"
-    fi;
-
     #HMMScan qsub grid call.
-    qsub -b y -pe multislot ${params.HMM.CPU} -N "HMMScan" -l vf=4G -l arch=lx24-amd64 -e ${params.HMM.OUTPUT}/error/ -o ${params.HMM.OUTPUT}/out/ -cwd ${params.HMM.SCAN} ${params.HMM.EVALUE} --domtblout ${params.HMM.OUTPUT}/all.domtblout --cpu ${params.HMM.CPU} -o ${params.HMM.OUTPUT}/all.out ${params.HMM.OUTPUT}/all.hmm ${params.DATABASE}
+    qsub -b y -pe multislot ${params.HMM.CPU} -N "HMMScan" -l vf=4G -l arch=lx24-amd64 -cwd ${params.HMM.SCAN} -E ${params.HMM.EVALUE} --domtblout ${params.HMM.OUTPUT}/all.domtblout --cpu ${params.HMM.CPU} -o ${params.HMM.OUTPUT}/all.out ${params.HMM.OUTPUT}/all.hmm ${params.DATABASE}
     """
 }
