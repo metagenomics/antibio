@@ -55,8 +55,8 @@ process blastSeq {
     '''
     #!/bin/sh
     contig=$(grep ">" !{uniq_seq} | cut -d" " -f1 | cut -c 2-)
-    echo !{params.BLAST.P} -db !{params.DATABASE.NCBI} -outfmt \\"6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore sallacc salltitles staxids sallseqid\\" -query "!{uniq_seq}" -out "!{baseDir}/$contig.txt" -num_threads !{params.BLAST.CPU}
-    echo !{params.BLAST.P} -db !{params.DATABASE.NCBI} -query "!{uniq_seq}" -html -out "!{baseDir}/$contig.html" -num_threads !{params.BLAST.CPU} 
+    !{params.BLAST.P} -db !{params.DATABASE.NCBI} -outfmt \\"6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore sallacc salltitles staxids sallseqid\\" -query "!{uniq_seq}" -out "!{baseDir}/$contig.txt" -num_threads !{params.BLAST.CPU}
+    !{params.BLAST.P} -db !{params.DATABASE.NCBI} -query "!{uniq_seq}" -html -out "!{baseDir}/$contig.html" -num_threads !{params.BLAST.CPU} 
     '''
 
 }
