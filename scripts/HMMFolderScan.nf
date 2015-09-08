@@ -19,5 +19,6 @@ process hmmFolderScan {
 
     #HMMScan qsub grid call.
     ${params.HMM.SCAN} -E ${params.HMM.EVALUE} --domtblout ${params.HMM.OUTPUT}/all.domtblout --cpu ${params.HMM.CPU} -o ${params.HMM.OUTPUT}/all.out ${params.HMM.OUTPUT}/all.hmm ${params.DATABASE.GENOME}
+
     """
 }
