@@ -34,10 +34,10 @@ process getFastaHeader {
 }
 
 process getContigSeq {
-    
+
     cpus 2
     memory '1 GB'
-    
+
     input:
     file db_file
     file uniq_header
@@ -60,7 +60,6 @@ process getContigSeq {
     awk -v p="$buffer" 'BEGIN{ ORS=""; RS=">"; FS="\\n" } $1 == p { print ">" $0 }' "!{db_file}" > uniq_seq
     awk -v p="$buffer" 'BEGIN{ ORS=""; RS=">"; FS="\\n" } $1 == p { print ">" $0 }' "!{db_file}" > uniq_seqHtml
     '''
-
 }
 
 process blastSeqTxt {
@@ -84,6 +83,7 @@ process blastSeqTxt {
     '''
 
 }
+
 
 process blastSeqHtml {
 
