@@ -1,0 +1,279 @@
+/**
+ * This is the default stylesheet for pileup.js.
+ * In general, it attempts to look like IGV.
+ * You are encouraged to override anything you like.
+ */
+
+.pileup-root {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+
+.pileup-root > .track {
+  display: flex !important;
+  flex-direction: row !important;
+}
+.pileup-root text, .track-label {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.track-label {
+  flex: 0 0 100px !important;  /* fixed-width track labels */
+  text-align: right !important;
+  font-size: 0.9em !important;
+  position: relative !important;  /* make this an offset parent for positioning the label. */
+}
+.track-label > span {
+  padding-right: 5px !important;
+}
+/* bottom-justify these track labels */
+.track.reference .track-label > span,
+.track.variants .track-label > span
+{
+  position: absolute !important;
+  bottom: 0 !important;
+  right: 0 !important;
+}
+.track-content {
+  flex: 1 !important;  /* stretch to fill remaining space */
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  position: relative !important;
+}
+.track-content > div {
+  position: absolute !important; /* Gets the child of the flex-item to fill height 100% */
+}
+.track-content canvas {
+  display: block !important;
+}
+
+/* controls */
+.pileup-root > .controls {
+  flex: 0 0 30px !important;  /* fixed height */
+}
+.pileup-root > .controls > .track-content {
+  overflow: visible !important;
+}
+.pileup-root > .controls form.controls {
+  margin-bottom: 0 !important;  /* overrides browser default */
+}
+.pileup-root > .controls .zoom-controls {
+  display: inline-block !important;
+}
+.pileup-root > .controls .btn-zoom-out:before {
+  content: '-' !important;
+}
+.pileup-root > .controls .btn-zoom-in:before {
+  content: '+' !important;
+}
+.pileup-root > .controls input,
+.pileup-root > .controls button,
+.pileup-root > .controls select,
+.pileup-root > .controls option {
+  font-size: 0.9em !important;
+}
+
+.gear {
+  margin-left: 0.5em;
+  font-size: 2em;
+  color: #666;
+}
+.gear:hover {
+  color: black;
+}
+.menu-container {
+  z-index: 1;
+  width: 250px;  /* not really 250px, but clears parent constraint */
+}
+.menu {
+  border: 1px solid black;
+  border-radius: 2px;
+  display: table;
+  background: white;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-align: left;
+}
+.menu-header {
+  font-weight: bold;
+  border-bottom: 1px solid #777;
+  padding: 2px 4px;
+}
+.menu-item {
+  padding: 4px !important;
+}
+.menu-separator {
+  border-top: 1px solid #777 !important;
+  height: 0px !important;
+}
+.menu-item:hover {
+  background: lightblue;
+}
+
+.check {
+  display: inline-block;
+  width: 1em !important;
+}
+.check.checked:before {
+  content: '✓' !important;
+}
+
+/* reference track */
+.pileup-root > .reference {
+  flex: 0 0 20px !important;  /* fixed height */
+}
+
+.background {
+  fill: white !important;
+}
+.basepair.A { fill: #188712 !important; }
+.basepair.G { fill: #C45C16 !important; }
+.basepair.C { fill: #0600F9 !important; }
+.basepair.T { fill: #F70016 !important; }
+.basepair.U { fill: #F70016 !important; }
+.basepair text, text.basepair {
+  text-anchor: middle !important;
+}
+.loose text {
+  font-size: 24 !important;
+}
+.tight text {
+  font-size: 12 !important;
+  font-weight: bold !important;
+}
+
+/* gene track */
+.pileup-root > .genes {
+  flex: 0 0 50px !important;
+}
+.gene {
+  stroke-width: 1;
+  stroke: blue;
+}
+.gene text {
+  font-size: 16px;
+  text-anchor: middle;
+  stroke: black;
+  alignment-baseline: hanging;
+}
+#sense, #antisense .main {
+  stroke: blue !important;
+  fill: none !important;
+  stroke-width: 1 !important;
+}
+#antisense .offset, #sense .offset {
+  stroke: white !important;
+  fill: none !important;
+  stroke-width: 1 !important;
+}
+.exon {
+  fill: blue !important;
+  stroke: none !important;
+}
+
+/* pileup track */
+.pileup-root > .pileup {
+  flex: 1 !important;  /* stretch to fill remaining space */
+}
+.pileup .alignment .match {
+  fill: #c8c8c8 !important;  /* matches IGV */
+}
+.pileup text.basepair {
+  alignment-baseline: hanging !important;
+  font-size: 12 !important;
+  font-weight: bold !important;
+}
+.pileup .insert {
+  stroke: rgb(97, 0, 216) !important;  /* matches IGV */
+  stroke-width: 2 !important;
+}
+.pileup .delete {
+  stroke: black !important;
+  stroke-width: 2 !important;
+}
+.pileup .network-status {
+  height: 100% !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.pileup .network-status-message {
+  padding: 4px 8px !important;
+  width: auto !important;
+  background: #eee !important;
+  border-radius: 3px !important;
+  border: 1px solid #ccc !important;
+  font-size: small !important;
+}
+
+.pileup .mate-connector {
+  stroke: #c8c8c8 !important;  /* matches IGV */
+}
+
+/* variants */
+.pileup-root > .variants {
+  flex: 0 0 25px !important;  /* fixed height */
+}
+.variants rect {
+  fill: #ddd !important;
+  stroke: blue !important;
+}
+
+/* coverage track */
+.pileup-root > .coverage {
+  flex: 0 0 50px !important;  /* fixed height */
+}
+.coverage rect.bin {
+  stroke-width: 0.1 !important;
+  stroke: white !important;
+  fill: #a0a0a0 !important;
+}
+.coverage .y-axis {
+  stroke: black !important;
+  stroke-width: 1 !important;
+}
+.coverage .y-axis g.tick text {
+  color: black !important;
+  font-size: x-small !important;
+  stroke: whitesmoke !important;
+  stroke-width: 2 !important;
+  paint-order: stroke !important;
+}
+.coverage .y-axis path {
+  stroke-width: 0 !important;
+}
+.coverage rect.y-axis-background {
+  fill: white !important;
+  opacity: 0.5 !important;
+}
+
+/* location track */
+.pileup-root > .location {
+  flex: 0 0 20px !important;  /* fixed height */
+}
+.location .location-hline, .location .location-vline-left, .location .location-vline-right {
+  stroke: gray !important;
+  stroke-width: 1.5 !important;
+}
+.location .location-label {
+  color: black !important;
+  font-size: smaller !important;
+  text-anchor: start !important;
+  dominant-baseline: central !important;
+}
+
+/* scale track */
+.pileup-root > .scale {
+  flex: 0 0 20px !important;  /* fixed height */
+}
+.scale .scale-lline, .scale .scale-rline {
+  stroke: gray !important;
+  stroke-width: 1.5 !important;
+}
+.scale .scale-label {
+  color: black !important;
+  font-weight: bold !important;
+  font-size: smaller !important;
+  dominant-baseline: central !important;
+  text-anchor: middle !important;
+}

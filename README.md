@@ -21,7 +21,7 @@ http://metagenomics.github.io/MeRaGENE/
 6. type in `"curl -fsSL get.nextflow.io | bash"` to download nextflow into this folder
 7. make sure that the binaries stated in the **Requirements** section below are installed on your machine
 8. after nextflow is downloaded, replace all the `"YOUR_***"` parts in the following command with your own paths 
-  - `"./nextflow run main.nf --genome="YOUR_FAA_FILE_OF_A_METAGENOME" --ncbi="YOUR_BLAST-DB" --input="YOUR_INPUT-HMM_FOLDER" --output="YOUR_OUTPUT-FOLDER" --cov="COVERAGE_FILES" --keywords="YOUR_KEYWORD-FILE"`
+  - `"./nextflow run main.nf --genome="YOUR_FAA_FILE_OF_A_METAGENOME" --ncbi="YOUR_BLAST-DB" --input="YOUR_INPUT-HMM_FOLDER" --output="YOUR_OUTPUT-FOLDER" --bam="READ_ASSEMBLY_ALIGNMENT" --keywords="YOUR_KEYWORD-FILE"`
 9. after replacing everything, run your command
 10. that's it ! The pipeline is running and crunching your data. Look for the overview.txt or. overview_new.txt in your output folder after the pipeline is finished
 - if you have further questions:
@@ -43,7 +43,6 @@ http://metagenomics.github.io/MeRaGENE/
 
 If you want/have to make further changes to your pipeline, here are all possibilities: [usage](usage.txt)
  
-
 ### Update MeRaGENE
 
 If you have already MeRaGENE installed, just run 
@@ -69,7 +68,7 @@ Where `type` can be `feature` or `fix` and `name` is a short description of the 
 
 Example: `feature/development-guide`
 
-Merge this branch by providing a pull request. Please update the [change log](CHANGELOG.md) before merging.
+Merge a branch by providing a pull request to a release/x.x.x branch. Please update the [change log](CHANGELOG.md) before merging.
 
 ### Development Scripts
 

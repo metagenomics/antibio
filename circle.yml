@@ -6,9 +6,10 @@ machine:
 dependencies:
   pre:
     - sudo apt-get update
-    - sudo apt-get install hmmer ncbi-blast+ lftp
+    - sudo apt-get install hmmer ncbi-blast+ lftp samtools
     - cd ~/ && curl -fsSL get.nextflow.io | bash
     - lftp -e "get /blast/executables/blast+/2.2.28/ncbi-blast-2.2.28+-x64-linux.tar.gz;quit "  ftp.ncbi.nlm.nih.gov 
+    - wget "http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/faToTwoBit"
     - tar xzvf ncbi-blast-2.2.28+-x64-linux.tar.gz
   cache_directories:
     - "vendor/python"

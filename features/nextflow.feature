@@ -9,18 +9,19 @@ Feature: Verification steps for bioPipeline
     And the stdout should contain:
       """
       USAGE
-      nextflow run metagenomics/MeRaGENE [OPTIONAL_ARGUMENTS] (--genome --ncbi --input --output --cov )
+      nextflow run metagenomics/MeRaGENE [OPTIONAL_ARGUMENTS] (--genome --ncbi --input --output --bam )
       """
 
   Scenario Outline: Run the pipeline with valid parameters
     Given I copy the example data files:
       | source           | dest        |
-      | db.faa           | db.faa      |  
+      | db.faa           | db.faa      |
       | blast.db         | blast.db    |
       | blast.db.phr     | blast.db.phr|
       | blast.db.psq     | blast.db.psq| 
       | blast.db.pin     | blast.db.pin|
-      | test.bam.coverage.txt |test.bam.coverage.txt | 
+      | test.bam         | test.bam    |
+      | test.bam.bai     | test.bam.bai|
       | search.yaml      | search.yaml |
       | keywords.txt     | keywords.txt|
     And I copy the example data directories:
@@ -38,7 +39,7 @@ Feature: Verification steps for bioPipeline
          --hmm_press="hmmpress" \
          <input> \
          <output> \
-         <cov> \
+         <bam> \
          <search> \
          <keywords> \
       """
@@ -50,6 +51,6 @@ Feature: Verification steps for bioPipeline
       | output/overview_new.txt  |
     And the file "output/overview_new.txt" should contain 6 lines
     Examples:
-      | faa                              | blast                        | input                     | output                       | cov                                      | search                             | keywords                             |
-      | --genome="${PWD}/tmp/db.faa"     | --ncbi="${PWD}/tmp/blast.db" |  --input="${PWD}/tmp/hmm" | --output="${PWD}/tmp/output" | --cov="${PWD}/tmp/test.bam.coverage.txt" |  --search="${PWD}/tmp/search.yaml" | --keywords="${PWD}/tmp/keywords.txt" |
-      | --genome="db.faa"                | --ncbi="blast.db"            |  --input="hmm"            | --output="output"            |  --cov="test.bam.coverage.txt"           |  --search="search.yaml"            | --keywords="keywords.txt"  |
+      | faa                              | blast                        | input                     | output                       | bam                         | search                             | keywords                             |
+      | --genome="${PWD}/tmp/db.faa"     | --ncbi="${PWD}/tmp/blast.db" |  --input="${PWD}/tmp/hmm" | --output="${PWD}/tmp/output" | --bam="${PWD}/tmp/test.bam" |  --search="${PWD}/tmp/search.yaml" | --keywords="${PWD}/tmp/keywords.txt" |
+      | --genome="db.faa"                | --ncbi="blast.db"            |  --input="hmm"            | --output="output"            | --bam="test.bam"            |  --search="search.yaml"            | --keywords="keywords.txt"  |

@@ -31,6 +31,10 @@ header {
     color: white;
 }
 
+#pileup {
+    min-height: 500px;
+}
+
 .scroll-target-margin {
     margin-bottom: 60px;
 }

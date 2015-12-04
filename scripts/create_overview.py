@@ -26,7 +26,7 @@ def writeHeader(coverages, file, insertGroup):
               util.LINKS, util.GENE_SEQUENCE]
     if insertGroup:
         header.insert(2, util.GROUP)
-    file.write(("\t".join(coverages + header)) + '\n')
+    file.write(("\t".join(map(lambda cov:os.path.basename(cov),coverages) + header)) + '\n')
 
 
 def move_txt_faa_files(output, file_txt, file_faa):

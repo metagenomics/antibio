@@ -30,7 +30,7 @@ def test_determine_config_values():
 
 
 def test_write_header():
-    coverages = ["cov1", "cov2"]
+    coverages = ["/test/path/cov1", "/test/path/cov2"]
     _, path = tempfile.mkstemp()
     with open(path, "r+") as temp_file:
         create_overview.writeHeader(coverages, temp_file, True)

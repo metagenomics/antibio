@@ -6,10 +6,10 @@
 |_|  |_|\\___|_|  \\_\\__,_|\\_____|______|_| \\_|______|
 
 USAGE
-nextflow run metagenomics/MeRaGENE [OPTIONAL_ARGUMENTS] (--genome --ncbi --input --output --cov )
+nextflow run metagenomics/MeRaGENE [OPTIONAL_ARGUMENTS] (--genome --ncbi --input --output --bam )
 
 DESCRIPTION
-MeRaGENE 0.1.0
+MeRaGENE 0.2.0
 
 --genome="/vol/genomeDat/test.faa"     Your faa to search in.
 
@@ -19,7 +19,7 @@ MeRaGENE 0.1.0
 
 --output="/vol/project/output"         A folder path that the pipeline should produce.
 
---cov="/vol/cov1.txt,/vol/cov2.txt"    List your coverage files, link them here.
+--bam="/vol/cov1.txt,/vol/cov2.txt"    Bam (read/assembly) alignment file.
 
 
 OPTIONAL ARGUMENTS

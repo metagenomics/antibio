@@ -19,16 +19,17 @@ emails:
   - wpaetzold@techfak.uni-bielefeld.de
 repository: https://github.com/metagenomics/MeRaGENE/issues
 scripts:
+  - "js/d3.min.js"
   - "js/jquery.js"
   - "js/bootstrap.min.js"
   - "js/bootstrap-table.min.js"
-  - "js/d3.min.js"
   - "js/c3.min.js"
   - "js/buildTable.js"
   - "js/bootstrap-table-filter-control.js"
+  - "js/pileup.js"
 css:
-  - "css/font-awesome.min.css"
   - "css/bootstrap.min.css"
   - "css/bootstrap-table.min.css"
   - "css/c3.min.css"
   - "css/style.css"
+  - "css/pileup.css"
