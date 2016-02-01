@@ -68,8 +68,6 @@ process hmmFolderScan {
     memory '8 GB'
     cache false
 
-    maxForks 6000 
-
     input:
     val chunk from fastaChunk
 
@@ -110,39 +108,32 @@ fastaFiles.filter({it -> java.nio.file.Files.size(it)!=0}).tap(uniq_overview).fl
 
 process getFasta {
 
-    executor 'local'
-
-    cpus 2
-
-    memory '1 GB'
+    cpus 4
+    memory '4 GB'
 
     input:
     val contigLine from uniq_lines
     
     output:
     file 'uniq_out'
+    file 'cut_faa'
     
-    shell:
-    '''
+    script:
+    """
     #!/bin/sh
-    contig=`echo "!{contigLine} " | cut -d ' ' -f 4`
-    grep  "$contig " !{genomeFaa} > uniq_header
-    buffer=`cat uniq_header | cut -c 2-`
-    contig=`echo $buffer | cut -d" " -f1`
-    awk -v p="$buffer" 'BEGIN{ ORS=""; RS=">"; FS="\\n" } $1 == p { print ">" $0 }' !{genomeFaa}  > !{baseDir}/$contig.faa
-    awk -v p="$buffer" 'BEGIN{ ORS=""; RS=">"; FS="\\n" } $1 == p { print ">" $0 }' !{genomeFaa}  > uniq_out
-    '''  
+    $PYTHON ${baseDir}/scripts/getFasta.py --i "${contigLine}" --g "${genomeFaa}" --b "$baseDir"
+    """  
 
 }
 
 uniq_seq = Channel.create()
 uniq_seqHtml = Channel.create()
-uniq_out.separate( uniq_seq, uniq_seqHtml ) { a -> [a, a] }
+cut_faa.separate( uniq_seq, uniq_seqHtml ) { a -> [a, a] }
 
 process blastSeqTxt {
     
     cpus 4
-    memory '8 GB'
+    memory '16 GB'
     
     input:
     file uniq_seq
@@ -171,8 +162,9 @@ blast_out
 
 process blastSeqHtml {
 
+    errorStrategy 'ignore'
     cpus 4
-    memory '8 GB'
+    memory '16 GB'
 
     input:
     file uniq_seqHtml
@@ -320,7 +312,7 @@ process createOverview {
 
    cpus 2
 
-   memory '4 GB'
+   memory '16 GB'
 
    input:
    file blast_all
